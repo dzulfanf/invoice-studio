@@ -1,38 +1,29 @@
-import { Badge } from '@/components/ui/badge';
+import { Badge } from "@/components/ui/badge"
+import type { InvoiceStatus } from "@/features/invoices/types/invoice"
 
-export type InvoiceStatus =
-  | 'draft'
-  | 'sent'
-  | 'paid'
-  | 'overdue'
-  | 'cancelled';
-
-interface InvoiceStatusBadgeProps {
-  status: InvoiceStatus;
+type InvoiceStatusBadgeProps = {
+  status: InvoiceStatus
 }
 
 const statusConfig: Record<
   InvoiceStatus,
   {
-    label: string;
+    label: string
   }
 > = {
   draft: {
-    label: 'Draft',
+    label: "Draft",
   },
   sent: {
-    label: 'Sent',
+    label: "Sent",
   },
   paid: {
-    label: 'Paid',
+    label: "Paid",
   },
   overdue: {
-    label: 'Overdue',
+    label: "Overdue",
   },
-  cancelled: {
-    label: 'Cancelled',
-  },
-};
+}
 
 export function InvoiceStatusBadge({
   status,
@@ -41,5 +32,5 @@ export function InvoiceStatusBadge({
     <Badge variant="secondary">
       {statusConfig[status].label}
     </Badge>
-  );
+  )
 }

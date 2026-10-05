@@ -11,7 +11,10 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest",
+    "test:storybook": "vitest --project storybook",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -56,6 +59,10 @@
     "typescript": "^5",
     "vite": "latest",
     "vitest": "^4"
+  },
+  "engines": {
+    "node": ">=20.9.0",
+    "pnpm": ">=10.33.2"
   },
   "packageManager": "pnpm@10.33.2",
   "pnpm": {

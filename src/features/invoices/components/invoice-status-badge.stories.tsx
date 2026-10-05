@@ -1,48 +1,40 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
-import {
-  InvoiceStatusBadge
-} from './invoice-status-badge';
+import { InvoiceStatusBadge } from "./invoice-status-badge"
 
 const meta = {
-  title: 'Invoices/Invoice Status Badge',
+  title: "Invoices/Invoice Status Badge",
   component: InvoiceStatusBadge,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
-} satisfies Meta<typeof InvoiceStatusBadge>;
+  tags: ["autodocs"],
+} satisfies Meta<typeof InvoiceStatusBadge>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Draft: Story = {
   args: {
-    status: 'draft',
+    status: "draft",
   },
-};
+}
 
 export const Sent: Story = {
   args: {
-    status: 'sent',
+    status: "sent",
   },
-};
+}
 
 export const Paid: Story = {
   args: {
-    status: 'paid',
+    status: "paid",
   },
-};
+}
 
 export const Overdue: Story = {
   args: {
-    status: 'overdue',
+    status: "overdue",
   },
-};
-
-export const Cancelled: Story = {
-  args: {
-    status: 'cancelled',
-  },
-};
+}

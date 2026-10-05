@@ -24,7 +24,7 @@ export default function NewInvoicePage() {
         </p>
       </div>
 
-      <InvoiceForm />
+      <InvoiceForm mode="create" />
     </div>
   )
 }
