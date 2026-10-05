@@ -4,12 +4,15 @@ import { useState, type ReactNode } from "react"
 
 import { Toaster } from "../src/components/ui/sonner"
 import "../src/app/globals.css"
+import { InvoiceRepositoryProvider } from "../src/features/invoices/api/invoice-repository-provider"
+import { createMockInvoiceRepository } from "../src/features/invoices/api/mock-invoice-repository"
 
 type StorybookProvidersProps = {
   children: ReactNode
 }
 
 function StorybookProviders({ children }: StorybookProvidersProps) {
+  const [repository] = useState(() => createMockInvoiceRepository())
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -24,8 +27,10 @@ function StorybookProviders({ children }: StorybookProvidersProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
-      <Toaster />
+      <InvoiceRepositoryProvider repository={repository}>
+        {children}
+        <Toaster />
+      </InvoiceRepositoryProvider>
     </QueryClientProvider>
   )
 }

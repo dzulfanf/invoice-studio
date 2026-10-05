@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 
-import { getInvoices } from "@/features/invoices/api/invoices"
+import { useInvoiceRepository } from "@/features/invoices/api/invoice-repository-provider"
 
 export const invoiceKeys = {
   all: ["invoices"] as const,
@@ -12,8 +12,10 @@ export const invoiceKeys = {
 }
 
 export function useInvoices() {
+  const repository = useInvoiceRepository()
+
   return useQuery({
     queryKey: invoiceKeys.list(),
-    queryFn: getInvoices,
+    queryFn: repository.list,
   })
 }

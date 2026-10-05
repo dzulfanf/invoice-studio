@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useState, type ReactNode } from "react"
 
+import { InvoiceRepositoryProvider } from "../api/invoice-repository-provider"
+import { createMockInvoiceRepository } from "../api/mock-invoice-repository"
 import { invoiceKeys } from "../hooks/use-invoices"
 import type { Invoice } from "../types/invoice"
 
@@ -17,6 +19,9 @@ export function InvoiceStoryProvider({
   invoiceId,
   invoice,
 }: InvoiceStoryProviderProps) {
+  const [repository] = useState(() =>
+    createMockInvoiceRepository(invoices),
+  )
   const [queryClient] = useState(() => {
     const client = new QueryClient({
       defaultOptions: {
@@ -41,7 +46,9 @@ export function InvoiceStoryProvider({
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <InvoiceRepositoryProvider repository={repository}>
+        {children}
+      </InvoiceRepositoryProvider>
     </QueryClientProvider>
   )
 }

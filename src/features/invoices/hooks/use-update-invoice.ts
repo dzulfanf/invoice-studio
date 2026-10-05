@@ -1,14 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-import {
-  updateInvoice,
-} from "@/features/invoices/api/invoices"
+import { useInvoiceRepository } from "@/features/invoices/api/invoice-repository-provider"
 
 import { invoiceKeys } from "./use-invoices"
 import type { UpdateInvoiceInput } from "../types/invoice"
 
 export function useUpdateInvoice() {
   const queryClient = useQueryClient()
+  const repository = useInvoiceRepository()
 
   return useMutation({
     mutationFn: ({
@@ -17,7 +16,7 @@ export function useUpdateInvoice() {
     }: {
       id: string
       input: UpdateInvoiceInput
-    }) => updateInvoice(id, input),
+    }) => repository.update(id, input),
 
     onSuccess: (invoice) => {
       queryClient.setQueryData(
