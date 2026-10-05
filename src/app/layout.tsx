@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Providers } from './providers';
+import { AppShell } from '@/components/layout/app-shell';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -36,7 +38,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="flex min-h-full flex-col">
         <Providers>
-          {children}
+          <AppShell>{children}</AppShell>
+          <Toaster />
         </Providers>
       </body>
     </html>
