@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { useInvoiceRepository } from "@/features/invoices/api/invoice-repository-provider";
+import { useInvoiceRepository } from "@/features/invoices/providers/invoice-repository-provider";
 
 import { invoiceKeys } from "./use-invoices";
 import type { UpdateInvoiceInput } from "../types/invoice";

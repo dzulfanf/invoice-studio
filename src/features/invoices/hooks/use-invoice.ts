@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { useInvoiceRepository } from "@/features/invoices/api/invoice-repository-provider";
+import { useInvoiceRepository } from "@/features/invoices/providers/invoice-repository-provider";
 
 import { invoiceKeys } from "./use-invoices";
 

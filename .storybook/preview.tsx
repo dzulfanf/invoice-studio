@@ -1,12 +1,20 @@
+import "../src/app/globals.css";
+
 import type { Preview } from "@storybook/nextjs-vite";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 
 import { Toaster } from "../src/components/ui/sonner";
-import "../src/app/globals.css";
-import { InvoiceRepositoryProvider } from "../src/features/invoices/api/invoice-repository-provider";
+import { InvoiceRepositoryProvider } from "../src/features/invoices/providers/invoice-repository-provider";
 import { createMockInvoiceRepository } from "../src/features/invoices/api/mock-invoice-repository";
 import { invoices } from "../src/features/invoices/mocks/invoices";
+import { Inter } from "next/font/google"
+import { cn } from "../src/lib/utils";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 type StorybookProvidersProps = {
   children: ReactNode;
@@ -39,9 +47,18 @@ function StorybookProviders({ children }: StorybookProvidersProps) {
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <StorybookProviders>
-        <Story />
-      </StorybookProviders>
+      <div
+        className={cn(
+          "h-full",
+          "antialiased",
+          "font-sans",
+          inter.variable,
+        )}
+      >
+        <StorybookProviders>
+          <Story />
+        </StorybookProviders>
+      </div>
     ),
   ],
   parameters: {

@@ -2,8 +2,7 @@
 
 import { createContext, useContext, type ReactNode } from "react";
 
-import { invoiceRepository } from "./invoices";
-import type { InvoiceRepository } from "./invoice-repository";
+import type { InvoiceRepository } from "../api/invoice-repository";
 
 const InvoiceRepositoryContext = createContext<InvoiceRepository | null>(null);
 
@@ -24,5 +23,13 @@ export function InvoiceRepositoryProvider({
 }
 
 export function useInvoiceRepository() {
-  return useContext(InvoiceRepositoryContext) ?? invoiceRepository;
+  const repository = useContext(InvoiceRepositoryContext)
+
+  if (!repository) {
+    throw new Error(
+      "useInvoiceRepository must be used within InvoiceRepositoryProvider",
+    )
+  }
+
+  return repository
 }

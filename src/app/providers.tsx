@@ -3,8 +3,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 
-import { invoiceRepository } from "@/features/invoices/api/invoices";
-import { InvoiceRepositoryProvider } from "@/features/invoices/api/invoice-repository-provider";
+import { invoiceRepository } from "@/features/invoices/api/invoice-repository-instance";
+import { InvoiceRepositoryProvider } from "@/features/invoices/providers/invoice-repository-provider";
 
 type ProvidersProps = {
   children: React.ReactNode;

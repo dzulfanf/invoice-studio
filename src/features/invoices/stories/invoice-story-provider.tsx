@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 
-import { InvoiceRepositoryProvider } from "../api/invoice-repository-provider";
+import { InvoiceRepositoryProvider } from "../providers/invoice-repository-provider";
 import { createMockInvoiceRepository } from "../api/mock-invoice-repository";
 import { invoiceKeys } from "../hooks/use-invoices";
 import type { Invoice } from "../types/invoice";

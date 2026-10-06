@@ -1,8 +1,4 @@
-import type {
-  CreateInvoiceInput,
-  Invoice,
-  UpdateInvoiceInput,
-} from "../types/invoice";
+import type { Invoice } from "../types/invoice";
 import type { InvoiceRepository } from "./invoice-repository";
 
 function cloneInvoice(invoice: Invoice): Invoice {
