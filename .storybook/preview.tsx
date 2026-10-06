@@ -1,18 +1,19 @@
-import type { Preview } from "@storybook/nextjs-vite"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { useState, type ReactNode } from "react"
+import type { Preview } from "@storybook/nextjs-vite";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState, type ReactNode } from "react";
 
-import { Toaster } from "../src/components/ui/sonner"
-import "../src/app/globals.css"
-import { InvoiceRepositoryProvider } from "../src/features/invoices/api/invoice-repository-provider"
-import { createMockInvoiceRepository } from "../src/features/invoices/api/mock-invoice-repository"
+import { Toaster } from "../src/components/ui/sonner";
+import "../src/app/globals.css";
+import { InvoiceRepositoryProvider } from "../src/features/invoices/api/invoice-repository-provider";
+import { createMockInvoiceRepository } from "../src/features/invoices/api/mock-invoice-repository";
+import { invoices } from "../src/features/invoices/mocks/invoices";
 
 type StorybookProvidersProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 function StorybookProviders({ children }: StorybookProvidersProps) {
-  const [repository] = useState(() => createMockInvoiceRepository())
+  const [repository] = useState(() => createMockInvoiceRepository(invoices));
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -23,7 +24,7 @@ function StorybookProviders({ children }: StorybookProvidersProps) {
           },
         },
       }),
-  )
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -32,7 +33,7 @@ function StorybookProviders({ children }: StorybookProvidersProps) {
         <Toaster />
       </InvoiceRepositoryProvider>
     </QueryClientProvider>
-  )
+  );
 }
 
 const preview: Preview = {
@@ -58,12 +59,9 @@ const preview: Preview = {
     },
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: "todo",
+      test: "error",
     },
   },
-}
+};
 
-export default preview
+export default preview;

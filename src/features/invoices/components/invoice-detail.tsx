@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowLeft, Pencil } from "lucide-react"
+import Link from "next/link";
+import { ArrowLeft, Pencil } from "lucide-react";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { InvoiceStatusBadge } from "./invoice-status-badge"
-import { useInvoice } from "@/features/invoices/hooks/use-invoice"
-import { Skeleton } from "@/components/ui/skeleton"
-import { InvoiceDetailState } from "./invoice-detail-state"
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { InvoiceStatusBadge } from "./invoice-status-badge";
+import { useInvoice } from "@/features/invoices/hooks/use-invoice";
+import { Skeleton } from "@/components/ui/skeleton";
+import { InvoiceDetailState } from "./invoice-detail-state";
 
 type InvoiceDetailProps = {
-  id: string
-}
+  id: string;
+};
 
 export function InvoiceDetail({ id }: InvoiceDetailProps) {
-  const { data: invoice, isPending, isError } = useInvoice(id)
+  const { data: invoice, isPending, isError } = useInvoice(id);
 
   function InvoiceDetailSkeleton() {
     return (
@@ -67,19 +67,19 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (isPending) {
-    return <InvoiceDetailSkeleton />
+    return <InvoiceDetailSkeleton />;
   }
 
   if (isError) {
-    return <InvoiceDetailState type="error" />
+    return <InvoiceDetailState type="error" />;
   }
 
   if (!invoice) {
-    return <InvoiceDetailState type="not-found" />
+    return <InvoiceDetailState type="not-found" />;
   }
 
   return (
@@ -88,7 +88,7 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
       <div className="flex items-center justify-between">
         <Link
           href="/invoices"
-          className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground mb-4 inline-flex items-center gap-2 text-sm transition-colors"
         >
           <ArrowLeft className="size-4" />
           Back to invoices
@@ -96,7 +96,7 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
 
         <Link
           href={`/invoices/${invoice.id}/edit`}
-          className="inline-flex h-8 items-center justify-center gap-2 rounded-md bg-primary px-3.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-8 items-center justify-center gap-2 rounded-md px-3.5 text-xs font-medium transition-colors"
         >
           <Pencil className="size-3" />
           Edit invoice
@@ -110,7 +110,7 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
             {invoice.invoiceNumber}
           </h1>
 
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="text-muted-foreground mt-1 text-sm">
             {invoice.customer.name}
           </p>
         </div>
@@ -123,24 +123,20 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
         {/* Main information */}
         <Card>
           <CardHeader>
-            <h2 className="font-semibold">
-              Invoice details
-            </h2>
+            <h2 className="font-semibold">Invoice details</h2>
           </CardHeader>
 
           <CardContent className="space-y-8">
             {/* Customer */}
             <section>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                 Customer
               </p>
 
               <div className="mt-3">
-                <p className="font-medium">
-                  {invoice.customer.name}
-                </p>
+                <p className="font-medium">{invoice.customer.name}</p>
 
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-1 text-sm">
                   {invoice.customer.email}
                 </p>
               </div>
@@ -149,36 +145,30 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
             {/* Dates */}
             <section className="grid gap-6 border-t pt-6 sm:grid-cols-2">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                   Issue date
                 </p>
 
-                <p className="mt-2 text-sm font-medium">
-                  {invoice.issueDate}
-                </p>
+                <p className="mt-2 text-sm font-medium">{invoice.issueDate}</p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                   Due date
                 </p>
 
-                <p className="mt-2 text-sm font-medium">
-                  {invoice.dueDate}
-                </p>
+                <p className="mt-2 text-sm font-medium">{invoice.dueDate}</p>
               </div>
             </section>
 
             {/* Description */}
             {invoice.description && (
               <section className="border-t pt-6">
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                   Description
                 </p>
 
-                <p className="mt-3 text-sm leading-6">
-                  {invoice.description}
-                </p>
+                <p className="mt-3 text-sm leading-6">{invoice.description}</p>
               </section>
             )}
           </CardContent>
@@ -187,15 +177,11 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
         {/* Summary */}
         <Card className="h-fit">
           <CardHeader>
-            <h2 className="font-semibold">
-              Invoice summary
-            </h2>
+            <h2 className="font-semibold">Invoice summary</h2>
           </CardHeader>
 
           <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Total amount
-            </p>
+            <p className="text-muted-foreground text-sm">Total amount</p>
 
             <p className="mt-2 text-3xl font-semibold tracking-tight">
               {invoice.amount.toLocaleString("en-US", {
@@ -207,5 +193,5 @@ export function InvoiceDetail({ id }: InvoiceDetailProps) {
         </Card>
       </div>
     </div>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-import { Badge } from "@/components/ui/badge"
-import type { InvoiceStatus } from "@/features/invoices/types/invoice"
+import { Badge } from "@/components/ui/badge";
+import type { InvoiceStatus } from "@/features/invoices/types/invoice";
 
 type InvoiceStatusBadgeProps = {
-  status: InvoiceStatus
-}
+  status: InvoiceStatus;
+};
 
 const statusConfig: Record<
   InvoiceStatus,
   {
-    label: string
+    label: string;
   }
 > = {
   draft: {
@@ -23,14 +23,8 @@ const statusConfig: Record<
   overdue: {
     label: "Overdue",
   },
-}
+};
 
-export function InvoiceStatusBadge({
-  status,
-}: InvoiceStatusBadgeProps) {
-  return (
-    <Badge variant="secondary">
-      {statusConfig[status].label}
-    </Badge>
-  )
+export function InvoiceStatusBadge({ status }: InvoiceStatusBadgeProps) {
+  return <Badge variant="secondary">{statusConfig[status].label}</Badge>;
 }

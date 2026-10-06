@@ -1,56 +1,45 @@
-"use client"
+"use client";
 
-import { ArrowLeft, Save } from "lucide-react"
-import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { ArrowLeft, Save } from "lucide-react";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
-import { useCreateInvoice } from "../hooks/use-create-invoice"
-import {
-  invoiceFormSchema,
-} from "@/features/invoices/schemas/invoice-schema"
-import { z } from "zod"
-import { useRouter } from "next/navigation"
-import type { Invoice } from "../types/invoice"
-import { useUpdateInvoice } from "../hooks/use-update-invoice"
-import { toast } from "sonner"
+import { useCreateInvoice } from "../hooks/use-create-invoice";
+import { invoiceFormSchema } from "@/features/invoices/schemas/invoice-schema";
+import { z } from "zod";
+import { useRouter } from "next/navigation";
+import type { Invoice } from "../types/invoice";
+import { useUpdateInvoice } from "../hooks/use-update-invoice";
+import { toast } from "sonner";
 
 type InvoiceFormProps =
   | {
-      mode: "create"
-      invoice?: never
+      mode: "create";
+      invoice?: never;
     }
   | {
-      mode: "edit"
-      invoice: Invoice
-    }
+      mode: "edit";
+      invoice: Invoice;
+    };
 
-export function InvoiceForm({
-  mode,
-  invoice,
-}: InvoiceFormProps) {
-  const router = useRouter()
-  const createInvoice = useCreateInvoice()
-  const updateInvoice = useUpdateInvoice()
+export function InvoiceForm({ mode, invoice }: InvoiceFormProps) {
+  const router = useRouter();
+  const createInvoice = useCreateInvoice();
+  const updateInvoice = useUpdateInvoice();
 
-  const isSubmitting =
-    createInvoice.isPending || updateInvoice.isPending
+  const isSubmitting = createInvoice.isPending || updateInvoice.isPending;
 
   const {
-  register,
-  handleSubmit,
-  formState: { errors },
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm<
     z.input<typeof invoiceFormSchema>,
     unknown,
@@ -66,11 +55,9 @@ export function InvoiceForm({
       amount: invoice?.amount,
       description: invoice?.description ?? "",
     },
-  })
+  });
 
-  function onSubmit(
-    values: z.output<typeof invoiceFormSchema>,
-  ) {
+  function onSubmit(values: z.output<typeof invoiceFormSchema>) {
     if (mode === "edit" && invoice) {
       updateInvoice.mutate(
         {
@@ -89,16 +76,16 @@ export function InvoiceForm({
         },
         {
           onSuccess: (updatedInvoice) => {
-            toast.success("Invoice updated successfully")
-            router.push(`/invoices/${updatedInvoice.id}`)
+            toast.success("Invoice updated successfully");
+            router.push(`/invoices/${updatedInvoice.id}`);
           },
           onError: () => {
             // toast.error("Failed to update invoice")
           },
         },
-      )
+      );
 
-      return
+      return;
     }
 
     createInvoice.mutate(
@@ -115,14 +102,14 @@ export function InvoiceForm({
       },
       {
         onSuccess: (createdInvoice) => {
-          toast.success("Invoice created successfully")
-          router.push(`/invoices/${createdInvoice.id}`)
+          toast.success("Invoice created successfully");
+          router.push(`/invoices/${createdInvoice.id}`);
         },
         onError: () => {
           // toast.error("Failed to create invoice")
         },
       },
-    )
+    );
   }
 
   return (
@@ -135,9 +122,7 @@ export function InvoiceForm({
 
           <CardContent className="grid gap-5 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="customer-name">
-                Customer name
-              </Label>
+              <Label htmlFor="customer-name">Customer name</Label>
 
               <Input
                 id="customer-name"
@@ -146,16 +131,14 @@ export function InvoiceForm({
               />
 
               {errors.customerName && (
-                <p className="text-xs text-destructive">
+                <p className="text-destructive text-xs">
                   {errors.customerName.message}
                 </p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="customer-email">
-                Email
-              </Label>
+              <Label htmlFor="customer-email">Email</Label>
 
               <Input
                 id="customer-email"
@@ -165,7 +148,7 @@ export function InvoiceForm({
               />
 
               {errors.customerEmail && (
-                <p className="text-xs text-destructive">
+                <p className="text-destructive text-xs">
                   {errors.customerEmail.message}
                 </p>
               )}
@@ -181,9 +164,7 @@ export function InvoiceForm({
           <CardContent className="space-y-5">
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="invoice-number">
-                  Invoice number
-                </Label>
+                <Label htmlFor="invoice-number">Invoice number</Label>
 
                 <Input
                   id="invoice-number"
@@ -192,7 +173,7 @@ export function InvoiceForm({
                 />
 
                 {errors.invoiceNumber && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-destructive text-xs">
                     {errors.invoiceNumber.message}
                   </p>
                 )}
@@ -211,7 +192,7 @@ export function InvoiceForm({
                 />
 
                 {errors.amount && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-destructive text-xs">
                     {errors.amount.message}
                   </p>
                 )}
@@ -220,36 +201,24 @@ export function InvoiceForm({
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="issue-date">
-                  Issue date
-                </Label>
+                <Label htmlFor="issue-date">Issue date</Label>
 
-                <Input
-                  id="issue-date"
-                  type="date"
-                  {...register("issueDate")}
-                />
+                <Input id="issue-date" type="date" {...register("issueDate")} />
 
                 {errors.issueDate && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-destructive text-xs">
                     {errors.issueDate.message}
                   </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="due-date">
-                  Due date
-                </Label>
+                <Label htmlFor="due-date">Due date</Label>
 
-                <Input
-                  id="due-date"
-                  type="date"
-                  {...register("dueDate")}
-                />
+                <Input id="due-date" type="date" {...register("dueDate")} />
 
                 {errors.dueDate && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-destructive text-xs">
                     {errors.dueDate.message}
                   </p>
                 )}
@@ -257,9 +226,7 @@ export function InvoiceForm({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">
-                Description
-              </Label>
+              <Label htmlFor="description">Description</Label>
 
               <Textarea
                 id="description"
@@ -269,7 +236,7 @@ export function InvoiceForm({
               />
 
               {errors.description && (
-                <p className="text-xs text-destructive">
+                <p className="text-destructive text-xs">
                   {errors.description.message}
                 </p>
               )}
@@ -278,21 +245,21 @@ export function InvoiceForm({
         </Card>
 
         <div className="flex items-center justify-between border-t pt-6">
-          {
-             mode === "create" ?
-              <Link
-                href="/invoices"
-                className="inline-flex h-9 items-center gap-2 rounded-md px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <ArrowLeft className="size-4" />
-                Cancel
-              </Link>
-            : <div></div>
-          }
+          {mode === "create" ? (
+            <Link
+              href="/invoices"
+              className="text-muted-foreground hover:bg-muted hover:text-foreground inline-flex h-9 items-center gap-2 rounded-md px-3 text-xs font-medium transition-colors"
+            >
+              <ArrowLeft className="size-4" />
+              Cancel
+            </Link>
+          ) : (
+            <div></div>
+          )}
 
           <div className="flex items-center gap-4">
             {(createInvoice.isError || updateInvoice.isError) && (
-              <p className="text-xs text-destructive">
+              <p className="text-destructive text-xs">
                 {mode === "edit"
                   ? "Failed to update invoice."
                   : "Failed to create invoice."}
@@ -314,5 +281,5 @@ export function InvoiceForm({
         </div>
       </div>
     </form>
-  )
+  );
 }

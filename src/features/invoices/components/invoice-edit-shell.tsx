@@ -1,13 +1,13 @@
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton";
 
 type InvoiceEditShellProps = {
-  id: string
-  children?: React.ReactNode
-  isLoading?: boolean
-}
+  id: string;
+  children?: React.ReactNode;
+  isLoading?: boolean;
+};
 
 export function InvoiceEditShell({
   id,
@@ -24,7 +24,7 @@ export function InvoiceEditShell({
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-xl border bg-card p-6">
+          <div className="bg-card rounded-xl border p-6">
             <Skeleton className="h-5 w-24" />
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -33,7 +33,7 @@ export function InvoiceEditShell({
             </div>
           </div>
 
-          <div className="rounded-xl border bg-card p-6">
+          <div className="bg-card rounded-xl border p-6">
             <Skeleton className="h-5 w-32" />
 
             <div className="mt-6 space-y-5">
@@ -52,7 +52,7 @@ export function InvoiceEditShell({
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -60,7 +60,7 @@ export function InvoiceEditShell({
       <div className="mb-8">
         <Link
           href={`/invoices/${id}`}
-          className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground mb-4 inline-flex items-center gap-2 text-sm transition-colors"
         >
           <ArrowLeft className="size-4" />
           Back to invoice
@@ -70,12 +70,12 @@ export function InvoiceEditShell({
           Edit invoice
         </h1>
 
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mt-1 text-sm">
           Update the invoice details for your customer.
         </p>
       </div>
 
       {children}
     </div>
-  )
+  );
 }

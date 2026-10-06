@@ -1,32 +1,24 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { useInvoiceRepository } from "@/features/invoices/api/invoice-repository-provider"
+import { useInvoiceRepository } from "@/features/invoices/api/invoice-repository-provider";
 
-import { invoiceKeys } from "./use-invoices"
-import type { UpdateInvoiceInput } from "../types/invoice"
+import { invoiceKeys } from "./use-invoices";
+import type { UpdateInvoiceInput } from "../types/invoice";
 
 export function useUpdateInvoice() {
-  const queryClient = useQueryClient()
-  const repository = useInvoiceRepository()
+  const queryClient = useQueryClient();
+  const repository = useInvoiceRepository();
 
   return useMutation({
-    mutationFn: ({
-      id,
-      input,
-    }: {
-      id: string
-      input: UpdateInvoiceInput
-    }) => repository.update(id, input),
+    mutationFn: ({ id, input }: { id: string; input: UpdateInvoiceInput }) =>
+      repository.update(id, input),
 
     onSuccess: (invoice) => {
-      queryClient.setQueryData(
-        invoiceKeys.detail(invoice.id),
-        invoice,
-      )
+      queryClient.setQueryData(invoiceKeys.detail(invoice.id), invoice);
 
       queryClient.invalidateQueries({
         queryKey: invoiceKeys.list(),
-      })
+      });
     },
-  })
+  });
 }

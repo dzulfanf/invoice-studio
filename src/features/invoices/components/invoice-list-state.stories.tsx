@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { InvoiceListState } from "./invoice-list-state"
+import { InvoiceListState } from "./invoice-list-state";
 
 const meta = {
   title: "Invoices/Invoice List State",
@@ -9,21 +9,21 @@ const meta = {
     layout: "padded",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof InvoiceListState>
+} satisfies Meta<typeof InvoiceListState>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
   args: {
     type: "empty",
   },
-}
+};
 
 export const Error: Story = {
   args: {
     type: "error",
     onRetry: () => undefined,
   },
-}
+};

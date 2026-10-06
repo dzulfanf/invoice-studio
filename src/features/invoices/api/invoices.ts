@@ -1,4 +1,4 @@
-import { invoices } from "@/features/invoices/mocks/invoices"
-import { createMockInvoiceRepository } from "./mock-invoice-repository"
+import { invoices } from "@/features/invoices/mocks/invoices";
+import { createMockInvoiceRepository } from "./mock-invoice-repository";
 
-export const invoiceRepository = createMockInvoiceRepository(invoices)
+export const invoiceRepository = createMockInvoiceRepository(invoices);

@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { invoices } from "../mocks/invoices"
-import { InvoiceStoryProvider } from "../stories/invoice-story-provider"
-import { InvoiceDetail } from "./invoice-detail"
+import { invoices } from "../mocks/invoices";
+import { InvoiceStoryProvider } from "../stories/invoice-story-provider";
+import { InvoiceDetail } from "./invoice-detail";
 
 const meta = {
   title: "Invoices/Invoice Detail",
@@ -11,11 +11,11 @@ const meta = {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof InvoiceDetail>
+} satisfies Meta<typeof InvoiceDetail>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -26,7 +26,7 @@ export const Default: Story = {
       <InvoiceDetail {...args} />
     </InvoiceStoryProvider>
   ),
-}
+};
 
 export const NotFound: Story = {
   args: {
@@ -37,4 +37,4 @@ export const NotFound: Story = {
       <InvoiceDetail {...args} />
     </InvoiceStoryProvider>
   ),
-}
+};

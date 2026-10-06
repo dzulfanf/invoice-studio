@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { createContext, useContext, type ReactNode } from "react"
+import { createContext, useContext, type ReactNode } from "react";
 
-import { invoiceRepository } from "./invoices"
-import type { InvoiceRepository } from "./invoice-repository"
+import { invoiceRepository } from "./invoices";
+import type { InvoiceRepository } from "./invoice-repository";
 
-const InvoiceRepositoryContext = createContext<InvoiceRepository | null>(null)
+const InvoiceRepositoryContext = createContext<InvoiceRepository | null>(null);
 
 type InvoiceRepositoryProviderProps = {
-  children: ReactNode
-  repository: InvoiceRepository
-}
+  children: ReactNode;
+  repository: InvoiceRepository;
+};
 
 export function InvoiceRepositoryProvider({
   children,
@@ -20,9 +20,9 @@ export function InvoiceRepositoryProvider({
     <InvoiceRepositoryContext.Provider value={repository}>
       {children}
     </InvoiceRepositoryContext.Provider>
-  )
+  );
 }
 
 export function useInvoiceRepository() {
-  return useContext(InvoiceRepositoryContext) ?? invoiceRepository
+  return useContext(InvoiceRepositoryContext) ?? invoiceRepository;
 }

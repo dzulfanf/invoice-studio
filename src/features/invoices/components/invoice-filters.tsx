@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { Search } from "lucide-react"
+import { Search } from "lucide-react";
 
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 type InvoiceFiltersProps = {
-  search: string
-  status: string
-  onSearchChange: (value: string) => void
-  onStatusChange: (value: string) => void
-}
+  search: string;
+  status: string;
+  onSearchChange: (value: string) => void;
+  onStatusChange: (value: string) => void;
+};
 
 export function InvoiceFilters({
   search,
@@ -27,13 +27,11 @@ export function InvoiceFilters({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="relative w-full sm:max-w-sm">
-        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
 
         <Input
           value={search}
-          onChange={(event) =>
-            onSearchChange(event.target.value)
-          }
+          onChange={(event) => onSearchChange(event.target.value)}
           placeholder="Search invoices..."
           className="pl-9"
         />
@@ -43,7 +41,7 @@ export function InvoiceFilters({
         value={status}
         onValueChange={(value) => {
           if (value) {
-            onStatusChange(value)
+            onStatusChange(value);
           }
         }}
       >
@@ -60,23 +58,13 @@ export function InvoiceFilters({
         </SelectTrigger>
 
         <SelectContent>
-          <SelectItem value="all">
-            All statuses
-          </SelectItem>
-          <SelectItem value="draft">
-            Draft
-          </SelectItem>
-          <SelectItem value="sent">
-            Sent
-          </SelectItem>
-          <SelectItem value="paid">
-            Paid
-          </SelectItem>
-          <SelectItem value="overdue">
-            Overdue
-          </SelectItem>
+          <SelectItem value="all">All statuses</SelectItem>
+          <SelectItem value="draft">Draft</SelectItem>
+          <SelectItem value="sent">Sent</SelectItem>
+          <SelectItem value="paid">Paid</SelectItem>
+          <SelectItem value="overdue">Overdue</SelectItem>
         </SelectContent>
       </Select>
     </div>
-  )
+  );
 }

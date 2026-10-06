@@ -1,4 +1,4 @@
-import type { Invoice } from "@/features/invoices/types/invoice"
+import type { Invoice } from "@/features/invoices/types/invoice";
 
 export const invoices: Invoice[] = [
   {
@@ -71,4 +71,4 @@ export const invoices: Invoice[] = [
     status: "draft",
     description: "Design system implementation",
   },
-]
+];

@@ -2,30 +2,30 @@ import type {
   CreateInvoiceInput,
   Invoice,
   UpdateInvoiceInput,
-} from "../types/invoice"
-import type { InvoiceRepository } from "./invoice-repository"
+} from "../types/invoice";
+import type { InvoiceRepository } from "./invoice-repository";
 
 function cloneInvoice(invoice: Invoice): Invoice {
   return {
     ...invoice,
     customer: { ...invoice.customer },
-  }
+  };
 }
 
 export function createMockInvoiceRepository(
   initialInvoices: Invoice[] = [],
 ): InvoiceRepository {
-  let records = initialInvoices.map(cloneInvoice)
+  let records = initialInvoices.map(cloneInvoice);
 
   return {
     async list() {
-      return records.map(cloneInvoice)
+      return records.map(cloneInvoice);
     },
 
     async getById(id) {
-      const invoice = records.find((record) => record.id === id)
+      const invoice = records.find((record) => record.id === id);
 
-      return invoice ? cloneInvoice(invoice) : null
+      return invoice ? cloneInvoice(invoice) : null;
     },
 
     async create(input) {
@@ -42,21 +42,21 @@ export function createMockInvoiceRepository(
         amount: input.amount,
         status: "draft",
         description: input.description,
-      }
+      };
 
-      records = [...records, invoice]
+      records = [...records, invoice];
 
-      return cloneInvoice(invoice)
+      return cloneInvoice(invoice);
     },
 
     async update(id, input) {
-      const index = records.findIndex((record) => record.id === id)
+      const index = records.findIndex((record) => record.id === id);
 
       if (index === -1) {
-        throw new Error("Invoice not found")
+        throw new Error("Invoice not found");
       }
 
-      const existingInvoice = records[index]
+      const existingInvoice = records[index];
       const updatedInvoice: Invoice = {
         ...existingInvoice,
         invoiceNumber: input.invoiceNumber,
@@ -69,13 +69,13 @@ export function createMockInvoiceRepository(
         dueDate: input.dueDate,
         amount: input.amount,
         description: input.description,
-      }
+      };
 
       records = records.map((record, recordIndex) =>
         recordIndex === index ? updatedInvoice : record,
-      )
+      );
 
-      return cloneInvoice(updatedInvoice)
+      return cloneInvoice(updatedInvoice);
     },
-  }
+  };
 }

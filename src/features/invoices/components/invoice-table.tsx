@@ -1,4 +1,4 @@
-import type { Invoice } from "@/features/invoices/types/invoice"
+import type { Invoice } from "@/features/invoices/types/invoice";
 
 import {
   Table,
@@ -7,18 +7,18 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
-import { InvoiceStatusBadge } from "./invoice-status-badge"
-import Link from "next/link"
+import { InvoiceStatusBadge } from "./invoice-status-badge";
+import Link from "next/link";
 
 type InvoiceTableProps = {
-  invoices: Invoice[]
-}
+  invoices: Invoice[];
+};
 
 export function InvoiceTable({ invoices }: InvoiceTableProps) {
   return (
-    <div className="overflow-hidden rounded-xl border bg-card">
+    <div className="bg-card overflow-hidden rounded-xl border">
       <Table className="min-w-[900px]">
         <TableHeader>
           <TableRow className="bg-muted/30 hover:bg-muted/30">
@@ -26,9 +26,7 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
             <TableHead className="px-6">Customer</TableHead>
             <TableHead className="px-6">Issue date</TableHead>
             <TableHead className="px-6">Due date</TableHead>
-            <TableHead className="px-6 text-right">
-              Amount
-            </TableHead>
+            <TableHead className="px-6 text-right">Amount</TableHead>
             <TableHead className="px-6">Status</TableHead>
           </TableRow>
         </TableHeader>
@@ -37,16 +35,13 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
           {invoices.map((invoice) => (
             <TableRow key={invoice.id}>
               <TableCell className="px-6 py-4">
-                <Link
-                  href={`/invoices/${invoice.id}`}
-                  className="group"
-                >
+                <Link href={`/invoices/${invoice.id}`} className="group">
                   <p className="font-medium group-hover:underline">
                     {invoice.invoiceNumber}
                   </p>
 
                   {invoice.description && (
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className="text-muted-foreground mt-1 text-xs">
                       {invoice.description}
                     </p>
                   )}
@@ -54,20 +49,18 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
               </TableCell>
 
               <TableCell className="px-6 py-4">
-                <p className="text-sm font-medium">
-                  {invoice.customer.name}
-                </p>
+                <p className="text-sm font-medium">{invoice.customer.name}</p>
 
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   {invoice.customer.email}
                 </p>
               </TableCell>
 
-              <TableCell className="px-6 py-4 text-sm text-muted-foreground">
+              <TableCell className="text-muted-foreground px-6 py-4 text-sm">
                 {invoice.issueDate}
               </TableCell>
 
-              <TableCell className="px-6 py-4 text-sm text-muted-foreground">
+              <TableCell className="text-muted-foreground px-6 py-4 text-sm">
                 {invoice.dueDate}
               </TableCell>
 
@@ -86,5 +79,5 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

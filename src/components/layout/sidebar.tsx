@@ -1,13 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import {
-  FileText,
-  LayoutDashboard,
-  Settings,
-  Users,
-} from "lucide-react"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FileText, LayoutDashboard, Settings, Users } from "lucide-react";
 
 const navigation = [
   {
@@ -30,26 +25,22 @@ const navigation = [
     href: "/settings",
     icon: Settings,
   },
-]
+];
 
 export function Sidebar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
-    <aside className="hidden w-64 shrink-0 border-r bg-background md:block">
+    <aside className="bg-background hidden w-64 shrink-0 border-r md:block">
       <div className="flex min-h-screen flex-col">
         <div className="flex h-16 items-center border-b px-6">
-          <span className="font-semibold tracking-tight">
-            Invoice Studio
-          </span>
+          <span className="font-semibold tracking-tight">Invoice Studio</span>
         </div>
 
         <nav className="flex-1 space-y-1 p-4">
           {navigation.map(({ label, href, icon: Icon }) => {
             const isActive =
-              href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(href)
+              href === "/" ? pathname === "/" : pathname.startsWith(href);
 
             return (
               <Link
@@ -65,10 +56,10 @@ export function Sidebar() {
                 <Icon className="size-4" />
                 {label}
               </Link>
-            )
+            );
           })}
         </nav>
       </div>
     </aside>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function InvoiceListSkeleton() {
   return (
@@ -11,9 +11,9 @@ export function InvoiceListSkeleton() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-xl border bg-card">
+      <div className="bg-card overflow-hidden rounded-xl border">
         <div className="min-w-[900px]">
-          <div className="flex h-10 items-center gap-6 border-b bg-muted/30 px-6">
+          <div className="bg-muted/30 flex h-10 items-center gap-6 border-b px-6">
             <Skeleton className="h-4 w-24" />
             <Skeleton className="h-4 w-32" />
             <Skeleton className="h-4 w-24" />
@@ -49,5 +49,5 @@ export function InvoiceListSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }

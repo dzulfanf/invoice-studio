@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { InvoiceListSkeleton } from "./invoice-list-skeleton"
+import { InvoiceListSkeleton } from "./invoice-list-skeleton";
 
 const meta = {
   title: "Invoices/Invoice List Skeleton",
@@ -9,10 +9,10 @@ const meta = {
     layout: "padded",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof InvoiceListSkeleton>
+} satisfies Meta<typeof InvoiceListSkeleton>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-export const Loading: Story = {}
+export const Loading: Story = {};
